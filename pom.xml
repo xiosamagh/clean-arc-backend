@@ -11,7 +11,7 @@
     <properties>
         <clean.arc.version>1-0-0-SNAPSHOT</clean.arc.version>
 
-        <lombok.version>1.18.24</lombok.version>
+        <lombok.version>1.18.22</lombok.version>
         <jackson.version>2.11.4</jackson.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
@@ -30,7 +30,8 @@
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <mavem.compiler.plugin.version>3.8.1</mavem.compiler.plugin.version>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
         <maven.deploy.plugin.version>2.8.1</maven.deploy.plugin.version>
         <flatten.maven.plugin.version>1.3.0</flatten.maven.plugin.version>
         <flatten.mode>bom</flatten.mode>
@@ -218,6 +219,12 @@
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-security</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
@@ -360,6 +367,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
@@ -370,28 +383,33 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
             </plugin>
 
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${maven.source.plugin.vertion}</version>
+                <version>${maven.source.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -403,8 +421,8 @@
             </plugin>
 
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-deploy-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
             </plugin>
 
             <plugin>
@@ -421,7 +439,7 @@
                     <version>${flatten.maven.plugin.version}</version>
 
                     <configuration>
-                        <updatePomFIle>true</updatePomFIle>
+                        <updatePomFile>true</updatePomFile>
                         <flattenMode>${flatten.mode}</flattenMode>
                     </configuration>
 
@@ -459,7 +477,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler.plugin.version}</version>
+                    <version>${maven.compiler.plugin.version}</version>
 
                     <configuration>
                         <source>${maven.compiler.source}</source>
@@ -475,6 +493,7 @@
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
                                 <version>${lombok.version}</version>
+
                             </path>
 
                             <path>
@@ -493,3 +512,4 @@
 
 
 </project>
+
